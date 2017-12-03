@@ -1,83 +1,98 @@
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="cache-control" content="max-age=0"/>
-        <meta http-equiv="cache-control" content="no-cache" />
-        <meta http-equiv="expires" content="0" />
-        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
-        <meta http-equiv="pragma" content="no-cache" />
-        <meta name="viewport" content="width=350">
-                
         <style>
-            @font-face {
-                font-family: DSEG;
-                src: url(fonts/DSEG7-Modern/DSEG7Modern-Italic.woff);
-            }
-
-            p {
-                font-family: DSEG;
-                font-size: 20pt;
-            }
-
             table {
                 border-collapse: separate;
-                border-spacing: 15px;
-            }            
-
-            td {
-                width: 80px;
-                height: 80px;
-                padding: 10px;
-                text-align: center;
-                border: solid 1px blue;
+                border-spacing: 15px 15px;
             }
 
-            .spacer {
-                width: 5px;
-                border: none;
+            td {
+                border: solid 1px black;
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                font-family: Britannic;
+                font-size: 18pt
+            }
+
+            .digits {
+                background-color: black;
+                color: white;
             }
         </style>
 
         <script>
+            function getResult(){
+                return document.getElementById("result").innerHTML; 
+            }
+
+            function setResult(x){
+                document.getElementById("result").innerHTML = x; 
+            }
+
+            function onDigitClick(td){
+                var value = td.childNodes[0].wholeText;
+            
+            var oldResult = getResult();
+            var newResult = oldResult + value;
+                setResult(newResult);
+            }
+
+            function onPeriodClick(){
+                var oldResult = getResult();
+            
+            var newResult;
+            if(oldResult.indexOf('.') >= 0){
+                newResult = oldResult;
+            }
+                else
+            {
+                newResult = oldResult + "." ;
+            }
+            
+            setResult(newResult);
+            }
 
         </script>
     </head>
     <body>
-       <table>
-           <tr>
-               <td colspan="6">1</td>
-            </tr>
+        <table> 
             <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td class="spacer"></td>
-                <td rowspan="2">1</td>
+              <td id="result" colspan="5"></td>
             </tr>
+            
             <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td class="spacer"></td>
+              <td class="digits" onclick="onDigitClick(this);">7</td>
+              <td class="digits" onclick="onDigitClick(this);">8</td>
+              <td class="digits" onclick="onDigitClick(this);">9</td>
+              <td>%</td>
+              <td>&#x221a;</td>
             </tr>
+            
             <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td class="spacer"></td>
-                <td>1</td>
-            </tr>
+              <td class="digits" onclick="onDigitClick(this);">4</td>
+              <td class="digits" onclick="onDigitClick(this);">5</td>
+              <td class="digits" onclick="onDigitClick(this);">6</td>
+              <td>&times;</td>
+              <td>&#247;</td>
+            </tr> 
+            
             <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td class="spacer"></td>
-                <td>1</td>
+              <td class="digits" onclick="onDigitClick(this);">1</td>
+              <td class="digits" onclick="onDigitClick(this);">2</td>
+              <td class="digits" onclick="onDigitClick(this);">3</td>
+              <td rowspan="2">+</td>
+              <td>-</td>
+            </tr> 
+            
+            <tr>
+              <td class="digits" onclick="onDigitClick(this);">0</td>
+              <td class="digits" onclick="onDigitClick(this);">00</td>
+              <td class="digits" onclick="onPeriodClick();">.</td>
+              <td>=</td>
             </tr>
-        </table>
+            
+            
+          </table>
     </body>
 </html>

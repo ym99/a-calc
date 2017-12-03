@@ -10,6 +10,5 @@
   "devDependencies": {
     "express": "^4.15.2"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
