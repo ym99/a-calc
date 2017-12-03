@@ -11,13 +11,7 @@
         <style>
             @font-face {
                 font-family: DSEG;
-                src: url(fonts/DSEG7-Modern/DSEG7Modern-Italic.woff);
-            }
-
-            #result {
-                font-family: DSEG;
-                text-align: right;
-                padding: 0px 15px 0px 15px;
+                src: url(fonts/DSEG7-Modern/DSEG7Modern-BoldItalic.woff);
             }
 
             table {
@@ -31,12 +25,21 @@
                 height: 50px;
                 text-align: center;
                 font-family: Britannic;
-                font-size: 18pt
+                font-size: 18pt;
+                cursor: hand;
+            }
+
+            #result {
+                font-family: DSEG;
+                text-align: right;
+                padding: 0px 15px 0px 15px;
+                cursor: default;
             }
 
             .separator {
                 border: none;
                 width: 0px;
+                cursor: default;
             }
 
             .digits {
@@ -58,6 +61,19 @@
                 var value = td.childNodes[0].wholeText;
             
                 var oldResult = getResult();
+                
+                if (oldResult === "0") {
+                    oldResult = "";
+                }
+                
+                if (oldResult === "00") {
+                    oldResult = "";
+                }
+
+                if (oldResult === "" && value === "00") {
+                    value = "0";
+                }
+
                 var newResult = oldResult + value;
                 setResult(newResult);
             }
