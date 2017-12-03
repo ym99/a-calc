@@ -18,6 +18,24 @@
                 font-family: DSEG;
                 font-size: 20pt;
             }
+
+            table {
+                border-collapse: separate;
+                border-spacing: 15px;
+            }            
+
+            td {
+                width: 80px;
+                height: 80px;
+                padding: 10px;
+                text-align: center;
+                border: solid 1px blue;
+            }
+
+            .spacer {
+                width: 5px;
+                border: none;
+            }
         </style>
 
         <script>
@@ -25,8 +43,41 @@
         </script>
     </head>
     <body>
-        <p>
-            -1234.567890
-        </p>
+       <table>
+           <tr>
+               <td colspan="6">1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td class="spacer"></td>
+                <td rowspan="2">1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td class="spacer"></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td class="spacer"></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td class="spacer"></td>
+                <td>1</td>
+            </tr>
+        </table>
     </body>
 </html>
