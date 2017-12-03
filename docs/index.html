@@ -32,7 +32,7 @@
                 background-color: white;
             }
 
-            #result {
+            #value {
                 font-family: DSEG;
                 text-align: right;
                 padding: 0px 15px 0px 15px;
@@ -54,47 +54,60 @@
         </style>
 
         <script>
-            function getResult() {
-                return document.getElementById("result").innerHTML; 
+            function getValue() {
+                return document.getElementById("value").innerHTML; 
             }
 
-            function setResult(x) {
-                document.getElementById("result").innerHTML = x; 
+            function setValue(x) {
+                document.getElementById("value").innerHTML = x; 
             }
 
             function onDigitClick(td) {
-                var value = td.childNodes[0].wholeText;
+                var digit = td.childNodes[0].wholeText;
             
-                var oldResult = getResult();
+                var oldValue = getValue();
                 
-                if (oldResult === "0") {
-                    oldResult = "";
+                if (oldValue === "0") {
+                    oldValue = "";
                 }
                 
-                if (oldResult === "00") {
-                    oldResult = "";
+                if (oldValue === "00") {
+                    oldValue = "";
                 }
 
-                if (oldResult === "" && value === "00") {
-                    value = "0";
+                if (oldValue === "" && digit === "00") {
+                    digit = "0";
                 }
 
-                var newResult = oldResult + value;
-                setResult(newResult);
+                var newValue = oldValue + digit;
+                setValue(newValue);
             }
 
             function onPeriodClick() {
-                var oldResult = getResult();
+                var oldValue = getValue();
             
-                var newResult;
-                if(oldResult.indexOf('.') >= 0) {
-                    newResult = oldResult;
+                var newValue;
+                if(oldValue.indexOf('.') >= 0) {
+                    newValue = oldValue;
                 }
                 else {
-                    newResult = oldResult + "." ;
+                    newValue = oldValue + "." ;
                 }
             
-                setResult(newResult);
+                setValue(newValue);
+            }
+            
+            var storedValue = "";
+
+            function onPlusClick() {
+                storedValue = getValue();
+                setValue("0");
+            }
+
+            function onEqualClick() {
+                var oldValue = getValue();
+                var newValue = (new Number(storedValue) + new Number(oldValue)).toString();
+                setValue(newValue); 
             }
 
         </script>
@@ -102,7 +115,7 @@
     <body>
         <table> 
             <tr>
-              <td id="result" colspan="6">0</td>
+              <td id="value" colspan="6">0</td>
             </tr>
             
             <tr>
@@ -128,7 +141,7 @@
               <td class="digits" onclick="onDigitClick(this);">2</td>
               <td class="digits" onclick="onDigitClick(this);">3</td>
               <td class="separator"></td>
-              <td rowspan="2">+</td>
+              <td rowspan="2" onclick="onPlusClick()">+</td>
               <td>-</td>
             </tr> 
             
@@ -137,7 +150,7 @@
               <td class="digits" onclick="onDigitClick(this);">00</td>
               <td class="digits" onclick="onPeriodClick();">.</td>
               <td class="separator"></td>
-              <td>=</td>
+              <td onclick="onEqualClick();">=</td>
             </tr>
            
           </table>
