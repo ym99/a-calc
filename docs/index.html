@@ -98,16 +98,55 @@
             }
             
             var storedValue = "";
+            var storedAction = null;
 
-            function onPlusClick() {
+            function onAddClick() {
+                if (storedAction !== null) {
+                    onEqualClick();
+                }
+
                 storedValue = getValue();
+                storedAction = (x, y) => x + y; 
+                setValue("0");
+            }
+
+            function onSubtractClick() {
+                if (storedAction !== null) {
+                    onEqualClick();
+                }
+
+                storedValue = getValue();
+                storedAction = (x, y) => x - y;
+                setValue("0");
+            }
+
+            function onMultiplyClick() {
+                if (storedAction !== null) {
+                    onEqualClick();
+                }
+
+                storedValue = getValue();
+                storedAction = (x, y) => x * y;
+                setValue("0");
+            }
+
+            function onDivideClick() {
+                if (storedAction !== null) {
+                    onEqualClick();
+                }
+
+                storedValue = getValue();
+                storedAction = (x, y) => x / y;
                 setValue("0");
             }
 
             function onEqualClick() {
                 var oldValue = getValue();
-                var newValue = (new Number(storedValue) + new Number(oldValue)).toString();
-                setValue(newValue); 
+                var newValue = storedAction(new Number(storedValue), new Number(oldValue)).toString();
+                storedValue = "";
+                storedAction = null;
+
+                setValue(newValue);
             }
 
         </script>
@@ -132,8 +171,8 @@
               <td class="digits" onclick="onDigitClick(this);">5</td>
               <td class="digits" onclick="onDigitClick(this);">6</td>
               <td class="separator"></td>
-              <td>&times;</td>
-              <td>&#247;</td>
+              <td onclick="onMultiplyClick();">&times;</td>
+              <td onclick="onDivideClick();">&#247;</td>
             </tr> 
             
             <tr>
@@ -141,8 +180,8 @@
               <td class="digits" onclick="onDigitClick(this);">2</td>
               <td class="digits" onclick="onDigitClick(this);">3</td>
               <td class="separator"></td>
-              <td rowspan="2" onclick="onPlusClick()">+</td>
-              <td>-</td>
+              <td rowspan="2" onclick="onAddClick()">+</td>
+              <td onclick="onSubtractClick();">-</td>
             </tr> 
             
             <tr>
