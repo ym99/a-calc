@@ -11,8 +11,8 @@ app.get('/favicon.ico', (request, response) => {
   response.sendFile(path.resolve(__dirname, '../docs/favicon.ico'));
 });
 
-app.get('/images/:img', (request, response) => {
-  response.sendFile(path.resolve(__dirname, '../docs/images/' + request.params.img));
+app.get('/fonts/:folder/:font', (request, response) => {
+  response.sendFile(path.resolve(__dirname, '../docs/fonts/' + request.params.folder + '/' + request.params.font));
 });
 
 require('http')
