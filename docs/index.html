@@ -149,6 +149,10 @@
                 setValue(newValue);
             }
 
+            function onAllClearClick() {
+                setValue("0");
+            }
+
         </script>
     </head>
     <body>
@@ -162,7 +166,7 @@
               <td class="digits" onclick="onDigitClick(this);">8</td>
               <td class="digits" onclick="onDigitClick(this);">9</td>
               <td class="separator"></td>
-              <td>%</td>
+              <td onclick="onAllClearClick()">AC</td>
               <td>&#x221a;</td>
             </tr>
             
