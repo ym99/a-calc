@@ -1,7 +1,7 @@
 {
-  "name": "html-learning",
+  "name": "a-calc",
   "version": "1.0.0",
-  "description": "HTML Learning",
+  "description": "A Calculator",
   "scripts": {
     "start": "node compiler/server.js"
   },
